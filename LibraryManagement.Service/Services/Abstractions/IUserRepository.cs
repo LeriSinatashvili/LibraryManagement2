@@ -1,7 +1,7 @@
 ﻿using LibraryManagement.Service.Commands;
 using LibraryManagement.Service.Models;
 
-namespace LibraryManagement.Service.Services
+namespace LibraryManagement.Service.Services.Abstractions
 {
     public interface IUserRepository
     {

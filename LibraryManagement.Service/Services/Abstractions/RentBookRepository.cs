@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagement.Service.Services
+namespace LibraryManagement.Service.Services.Abstractions
 {
     public class RentBookRepository : IRentBookRepository
     {

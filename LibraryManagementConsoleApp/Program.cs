@@ -1,5 +1,7 @@
 ﻿using LibraryManagement.Service.Commands;
 using LibraryManagement.Service.Services;
+using LibraryManagement.Service.Services.Abstractions;
+using LibraryManagement.Service.Services.Implementations;
 
 namespace LibraryManagementConsoleApp
 {
@@ -93,7 +95,7 @@ namespace LibraryManagementConsoleApp
             var bookService = new BookService(new BookRepository());
             //bookService.ExecuteRegisterBook(registerBook);
             //bookService.ExecuteEditBook(editBook);
-            bookService.ExecuteDeleteBook(deleteBook);
+            //bookService.ExecuteDeleteBook(deleteBook);
 
 
             var rentBook = new RentBookCommand()
@@ -117,7 +119,7 @@ namespace LibraryManagementConsoleApp
 
             var rentBookService = new RentBookService(new RentBookRepository());
             //rentBookService.ExecuteRentBookRenting(rentBook);
-            //rentBookService.ExecuteRentBookReturning(returnBook);
+            rentBookService.ExecuteRentBookReturning(returnBook);
 
         }
     }

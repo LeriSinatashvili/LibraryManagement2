@@ -1,12 +1,13 @@
 ﻿using LibraryManagement.Service.Commands;
 using LibraryManagement.Service.Models;
+using LibraryManagement.Service.Services.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagement.Service.Services
+namespace LibraryManagement.Service.Services.Implementations
 {
     public class RentBookService
     {
@@ -27,13 +28,13 @@ namespace LibraryManagement.Service.Services
 
 
             var rentBookQuantity = _rentBookRepository.CheckBookQuantity(command.RentBookTitle);
-            if(rentBookQuantity < 1)
+            if (rentBookQuantity < 1)
             {
                 throw new Exception();
             }
 
             var userHasRentedBooks = _rentBookRepository.CheckUserRentedBooksQuantity(command.RentUserIdentificationNumber);
-            if(userHasRentedBooks >= 5)
+            if (userHasRentedBooks >= 5)
             {
                 throw new Exception();
             }

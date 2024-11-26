@@ -1,12 +1,13 @@
 ﻿using LibraryManagement.Service.Commands;
 using LibraryManagement.Service.Models;
+using LibraryManagement.Service.Services.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagement.Service.Services
+namespace LibraryManagement.Service.Services.Implementations
 {
     public class BookService
     {

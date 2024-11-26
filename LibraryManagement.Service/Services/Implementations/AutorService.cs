@@ -1,12 +1,13 @@
 ﻿using LibraryManagement.Service.Commands;
 using LibraryManagement.Service.Models;
+using LibraryManagement.Service.Services.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagement.Service.Services
+namespace LibraryManagement.Service.Services.Implementations
 {
     public class AutorService
     {
@@ -29,7 +30,7 @@ namespace LibraryManagement.Service.Services
             {
                 throw new Exception();
             }
-            
+
 
             var autor = new Autor();
 
@@ -52,7 +53,7 @@ namespace LibraryManagement.Service.Services
                 throw new Exception();
             }
             int autorHasBooks = _autorRepository.AutorHasBooks(command.AutorName);
-            if(autorHasBooks > 0)
+            if (autorHasBooks > 0)
             {
                 throw new Exception();
             }
