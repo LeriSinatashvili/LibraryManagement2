@@ -3,6 +3,7 @@ using LibraryManagement.Service.Services;
 using LibraryManagement.Service.Services.Abstractions;
 using LibraryManagement.Service.Services.Implementations;
 
+
 namespace LibraryManagementConsoleApp
 {
     internal class Program
@@ -27,8 +28,8 @@ namespace LibraryManagementConsoleApp
             };
 
 
-            //var userService = new UserService(new UserRepository());
-            //userService.ExecuteRegisterUser(registerUserComman);
+            var userService = new UserService(new UserRepository());
+            userService.ExecuteRegisterUser(registerUserComman);
             //userService.ExecuteDeleteUser(deleteUserComman);
 
 
@@ -119,7 +120,7 @@ namespace LibraryManagementConsoleApp
 
             var rentBookService = new RentBookService(new RentBookRepository());
             //rentBookService.ExecuteRentBookRenting(rentBook);
-            rentBookService.ExecuteRentBookReturning(returnBook);
+            //rentBookService.ExecuteRentBookReturning(returnBook);
 
         }
     }

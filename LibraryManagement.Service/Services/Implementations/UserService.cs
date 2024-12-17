@@ -1,6 +1,7 @@
 ﻿using LibraryManagement.Service.Commands;
 using LibraryManagement.Service.Models;
 using LibraryManagement.Service.Services.Abstractions;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,22 +20,22 @@ namespace LibraryManagement.Service.Services.Implementations
             _userRepository = userRepository;
         }
 
-        public void ExecuteRegisterUser(RegisterUserCommand command)
+        public async Task ExecuteRegisterUser(RegisterUserCommand command)
         {
 
 
             command.ValidateUser();
 
-            bool userIdentificationNumberExists = _userRepository.UserIdentificationNumberExists(command.UserIdentificationNumber);
+            bool userIdentificationNumberExists = await _userRepository.UserIdentificationNumberExists(command.UserIdentificationNumber);
             if (userIdentificationNumberExists)
             {
-                throw new Exception();
+                throw new Exception("User Identification Number Already Exists");
             }
 
-            bool userEmailExists = _userRepository.UserEmailExists(command.UserEmail);
+            bool userEmailExists = await _userRepository.UserEmailExists(command.UserEmail);
             if (userEmailExists)
             {
-                throw new Exception();
+                throw new Exception("User Email Already Exists");
             }
 
             var newUser = new User();
@@ -43,32 +44,27 @@ namespace LibraryManagement.Service.Services.Implementations
             newUser.UserIdentificationNumber = command.UserIdentificationNumber;
             newUser.UserEmail = command.UserEmail;
 
-            _userRepository.RegisterUser(newUser);
+            await _userRepository.RegisterUser(newUser);
 
         }
 
-        public void ExecuteDeleteUser(DeleteUserCommand command)
+        public async Task ExecuteDeleteUser(DeleteUserCommand command)
         {
             command.ValidateUser();
 
-            bool userIdentificationNumberExists = _userRepository.UserIdentificationNumberExists(command.UserIdentificationNumber);
+            bool userIdentificationNumberExists = await _userRepository.UserIdentificationNumberExists(command.UserIdentificationNumber);
             if (!userIdentificationNumberExists)
             {
-                throw new Exception();
+                throw new Exception("User Does Not Exist");
             }
-            int userHasRentedBooks = _userRepository.UserHasRentedBooks(command.UserIdentificationNumber);
+
+            int userHasRentedBooks = await _userRepository.UserHasRentedBooks(command.UserIdentificationNumber);
             if (userHasRentedBooks > 0)
             {
-                throw new Exception();
+                throw new Exception("User Has Rented Books");
             }
 
-
-            var newUser = new User();
-
-            newUser.UserIdentificationNumber = command.UserIdentificationNumber;
-
-
-            _userRepository.DeleteUser(newUser);
+            await _userRepository.DeleteUser(command.UserIdentificationNumber);
 
         }
 
