@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Service.Context
 {
-    internal class LibraryManagementContext : DbContext
+    public class LibraryManagementContext : DbContext
     {
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Another> AnotherTable { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 

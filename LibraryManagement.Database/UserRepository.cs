@@ -23,6 +23,7 @@ namespace LibraryManagement.Service.Services.Abstractions
 
             using (var context = new LibraryManagementContext())
             {
+
                 var newUser = new User();
 
                 newUser.UserName = user.UserName;
@@ -47,8 +48,6 @@ namespace LibraryManagement.Service.Services.Abstractions
 
             using (var context = new LibraryManagementContext())
             {
-
-                // cant make ExecuteSqlScalar to work
 
                 countUserIdentificationNumber =  await context.Users.CountAsync(u => u.UserIdentificationNumber == userIdentificationNumber);
 
@@ -108,8 +107,6 @@ namespace LibraryManagement.Service.Services.Abstractions
 
             using (var context = new LibraryManagementContext())
             {
-
-                //Cant Use ExecuteScalar
 
                 var result = await context.Users
                             .Where(u => u.UserIdentificationNumber == userIdentificationNumber)
